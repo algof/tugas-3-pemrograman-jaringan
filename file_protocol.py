@@ -28,7 +28,7 @@ class FileProtocol:
         try:
             if len(c) == 1:
                 c_request = c[0]
-                cl = self.file.list();
+                cl = self.file.list()
             elif len(c) == 2:
                 c_request = c[0]
                 params = c[1]
