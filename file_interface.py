@@ -1,7 +1,6 @@
 import os
 import json
 import base64
-import logging
 from glob import glob
 
 
@@ -39,11 +38,25 @@ class FileInterface:
 
     def upload(self,params=[]):
         try:
+            filelist = glob('*.*')
             filename = params[0]
+
+            if filename in filelist:
+                return dict(status='ERROR',data=f"File '{filename}' already exists")
+            
             content = params[1]
             file_bytes = base64.b64decode(content)
-            with open(filename, 'wb+') as file_pointer:
-                file_pointer.write(file_bytes)
+
+            extension = filename.split('.')[-1].lower()
+            text_extensions = ['txt', 'csv', 'json', 'html', 'xml']
+            if extension in text_extensions:
+                file_str = file_bytes.decode('utf-8')
+                with open(filename, 'w', encoding='utf-8') as file_pointer:
+                    file_pointer.write(file_str)
+            else:
+                with open(filename, 'wb') as file_pointer:
+                    file_pointer.write(file_bytes)
+                    
             return dict(status='OK',data=f"{filename} has been uploaded")
         except Exception as e:
             return dict(status='ERROR',data=str(e))

@@ -50,7 +50,7 @@ UPLOAD
   - data: pesan bahwa file berhasil di upload ke file server
 - GAGAL:
   - status: ERROR
-  - data: pesan kesalahan
+  - data: pesan kesalahan atau pesan file sudah ada di direktori
 
 DELETE
 * TUJUAN: untuk menghapus suatu file di direktori file server

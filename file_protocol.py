@@ -23,12 +23,12 @@ class FileProtocol:
         logging.warning(f"string diproses: {string_datamasuk}")
 
         c = string_datamasuk.split()
-        print(len(c))
 
         try:
             if len(c) == 1:
                 c_request = c[0]
-                cl = self.file.list()
+                if c_request == "LIST":
+                    cl = self.file.list()
             elif len(c) == 2:
                 c_request = c[0]
                 params = c[1]
