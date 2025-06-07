@@ -33,7 +33,6 @@ def send_command(command_str=""):
         logging.warning("error during data receiving")
         return False
 
-
 def remote_list():
     command_str=f"LIST"
     hasil = send_command(command_str)
