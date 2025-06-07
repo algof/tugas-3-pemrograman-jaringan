@@ -5,10 +5,8 @@ import logging
 import time
 import sys
 
-
 from file_protocol import  FileProtocol
 fp = FileProtocol()
-
 
 class ProcessTheClient(threading.Thread):
     def __init__(self, connection, address):
@@ -34,7 +32,6 @@ class ProcessTheClient(threading.Thread):
                 break
         self.connection.close()
 
-
 class Server(threading.Thread):
     def __init__(self,ipaddress='0.0.0.0',port=8889):
         self.ipinfo=(ipaddress,port)
@@ -50,17 +47,13 @@ class Server(threading.Thread):
         while True:
             self.connection, self.client_address = self.my_socket.accept()
             logging.warning(f"connection from {self.client_address}")
-
             clt = ProcessTheClient(self.connection, self.client_address)
             clt.start()
             self.the_clients.append(clt)
-
 
 def main():
     svr = Server(ipaddress='0.0.0.0',port=46666)
     svr.start()
 
-
 if __name__ == "__main__":
     main()
-
