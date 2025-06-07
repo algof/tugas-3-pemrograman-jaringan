@@ -70,13 +70,18 @@ def remote_delete(filename=""):
     else:
         print("Gagal")
 
-
-
-
+def remote_upload(filename, isifile):
+    command_str=f"UPLOAD {filename} {isifile}"
+    hasil = send_command(command_str)
+    if(hasil['status'] == 'OK'):
+        print(f"file {filename} berhasil di upload")
+        print(hasil['message'])
+    else:
+        print("Gagal")
 
 if __name__=='__main__':
     server_address=('172.16.16.101', 46666)
     # remote_list()
     # remote_get('donalbebek.jpg')
-    remote_delete('donalbebek_4.jpg')
-
+    # remote_delete('donalbebek_4.jpg')
+    remote_upload('hello_copy1.txt', "SGVsbG8sIFdvcmxkIQ==")

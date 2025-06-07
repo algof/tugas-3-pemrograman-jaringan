@@ -57,7 +57,7 @@ class FileInterface:
                 with open(filename, 'wb') as file_pointer:
                     file_pointer.write(file_bytes)
                     
-            return dict(status='OK',data=f"{filename} has been uploaded")
+            return dict(status='OK',message=f"{filename} has been uploaded")
         except Exception as e:
             return dict(status='ERROR',data=str(e))
 
@@ -74,11 +74,6 @@ class FileInterface:
 
 if __name__=='__main__':
     f = FileInterface()
-    # print(f.list())
-    # print(f.get(['pokijan.jpg']))
-    # print(f.delete(['donalbebek_1.jpg']))
+    print(f.delete(["donalbebek_1.jpg"]))
     content_base64 = f.get_dummy_base64(['donalbebek.jpg'])
-    # print(content_base64)
     print(f.upload(["donalbebek_4.jpg", content_base64]))
-    
-    
