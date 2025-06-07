@@ -10,7 +10,7 @@ def send_command(command_str=""):
     logging.warning(f"connecting to {server_address}")
     try:
         logging.warning(f"sending message ")
-        sock.sendall(command_str.encode())
+        sock.sendall((command_str + '\r\n').encode())
         # Look for the response, waiting until socket is done (no more data)
         data_received="" #empty string
         while True:
